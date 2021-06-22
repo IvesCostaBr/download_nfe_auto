@@ -15,7 +15,9 @@ def buscarNota(doc):
     mes = '07'
     ano = '2016'
     cod_empresa = '13830'
+    #posição da janela na area de trabalho
     pyautogui.click(x=278, y=765)
+    #------------------------------------
     pyautogui.moveTo(x=325, y=43, duration=1)
     pyautogui.click(x=325, y=43)
 
@@ -70,7 +72,22 @@ def exit():
     pyautogui.click(x=405, y=204)
     pyautogui.click(x=280, y=198)
     
-    
-for c in range(len(doc)):
-    buscarNota(doc[c])
-    exit()
+def navegadorDownload():
+
+    pyautogui.click(x=313, y=751)
+    pyautogui.click(x=469, y=280)
+    pyautogui.hotkey('ctrl', 'v')
+    pyautogui.click(x=725, y=331)
+
+
+
+def main(lista):
+    for c in range(len(lista)):
+        buscarNota(lista[c])
+        exit()
+        navegadorDownload()
+
+
+
+
+main(doc)
