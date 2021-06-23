@@ -6,9 +6,6 @@ import pandas
 
 doc = ['107246', '107259', '107370', '107282']
 
-time.sleep(3)
-print(pyautogui.position())
-
 def buscarNota(doc):
     diamax = '31'
     dia = '01'
@@ -89,5 +86,71 @@ def main(lista):
 
 
 
+def settingsIcmsAndIpi(tempo, cst, qtd):
+    print('Abra a janela do Patrico que contem a lista de notas.')
+    time.sleep(tempo)
+    for c in range(int(qtd)):
+        pyautogui.click(x=623, y=208, clicks=2)
+    #IPI
+        pyautogui.click(x=509, y=522)
+        pyautogui.click(x=933, y=519)
+        pyautogui.hotkey('ctrl', 'a')
+        pyautogui.write('0')
+        
+        
+    #ICMS
+        pyautogui.click(x=507, y=543)
+        pyautogui.click(x=844, y=542)
+        pyautogui.hotkey('ctrl', 'a')
+        pyautogui.write('0')
+        pyautogui.press('enter')
+        pyautogui.click(x=942, y=544)
+        pyautogui.hotkey('ctrl', 'a')
+        pyautogui.write(cst)
+        pyautogui.press('enter')
+        
+        pyautogui.click(x=623, y=208)
+        pyautogui.press('down')
 
-main(doc)
+
+def mapeamento():
+    print(pyautogui.position())
+
+
+def app():
+    print("""
+          
+          -----------------------------------------------------------------------------------
+          |                                                                                 |
+          |                                                                                 |
+          |      OLÁ EU SOU UM ROBO , ESTOU PRONTO PARA EXECUTAR SUAS TAREFAS:)             |
+          |      [1] Setar IPI e ICMS em uma lista.                                         |
+          |      [2] Baixar Notas Online(Em Manutencao).                                    |
+          |      [3] Mapeamento de Tarefas.                                                 |
+          |      [0] Sair                                                                   |
+          |                                                                                 |    
+          |                                                                                 | 
+          |                                                                                 | 
+          |                                                                                 |
+          |                                                                                 |
+          -----------------------------------------------------------------------------------
+          VERSÂO : Alpha
+          
+          """)
+    resp = int(input('Digite a opção desejada'))
+    if (resp == 1):
+        tempo = int(input("Digite o tempo que você quer aguardar até inciar a tarefa."))
+        cst = str(input('Informe o CST?'))
+        qtd = input("Digite a quantidade de repeticao.")
+        settingsIcmsAndIpi(tempo, cst, qtd)
+        app()
+    elif (resp == 2):
+        exit()
+    elif (resp == 0):
+        exit()
+    elif (resp ==3):
+        mapeamento()
+        
+        
+if __name__ == '__main__':
+    app()
